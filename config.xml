@@ -110,10 +110,6 @@
 		<splash density="xxxhdpi" src="www/res/screen/android/xxxhdpi.png" />
 		<!-- ./not support using custom source -->
 	</platform>
-	<platform name="ios">
-	</platform>
-	<preference name="phonegap-version" value="cli-8.0.0" />
-	<plugin name="cordova-plugin-admob-free">
-		<variable name="ADMOB_APP_ID" value="ca-app-pub-2041208520808887~1520902095" />
+	
 	</plugin>
 </widget>
