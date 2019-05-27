@@ -47,61 +47,77 @@ angular.module("ella_cinders_1926_colleen_moore", ["ngCordova","ionic","ionMdInp
 				StatusBar.styleDefault();
 			}
 			// this will create a banner on startup
-			//required: cordova plugin add cordova-plugin-admob-free --save
-			if (typeof admob !== "undefined"){
+			//required: cordova plugin add cordova-plugin-admobpro --save
+			if (typeof AdMob !== "undefined"){
 				var admobid = {};
 				admobid = {
 					banner: "ca-app-pub-2041208520808887/8604528653",
 					interstitial: "ca-app-pub-2041208520808887/4693860341",
+					rewardvideo: ""
 				};
 				
-				// banner
+				// ADS BANNER
 				try{
-					admob.banner.config({
-						id: admobid.banner,
-						autoShow: false
+					AdMob.createBanner({
+						adId: admobid.banner,
+						overlap: false,
+						autoShow: false,
+						offsetTopBar: false,
+						position: AdMob.AD_POSITION.TOP_CENTER,
+						bgColor: "white"
 					});
-					admob.banner.prepare();
 				}catch(err){ 
-					//alert(err.message);
+					//navigator.notification.activityStart(err.message, "Admob");
 				}
 				$interval(function(){
 					if($rootScope.liveStatus == "run"){
 						try{
-							admob.banner.show();
+							AdMob.showBanner(AdMob.AD_POSITION.TOP_CENTER);
 						}catch(err){ 
-							//alert(err.message);
+							//navigator.notification.activityStart(err.message, "Admob");
 						}
 					}
 				},10000); 
 				
 				$ionicPlatform.on("pause",function(){
 					try{
-						admob.banner.hide();
+						AdMob.hideBanner();
 					}catch(err){ 
-						//alert(err.message);
+						//navigator.notification.activityStart(err.message, "Admob");
 					}
 				});
-				
-				// interstitial
+			
+				// INTERSTITIAL
 				try{
-					admob.interstitial.config({
-						id: admobid.interstitial,
-						autoShow: false
+					AdMob.prepareInterstitial({
+						adId: admobid.interstitial,
+						autoShow: false,
 					});
-					admob.interstitial.prepare();
 				}catch(err){ 
 					//alert(err.message);
 				}
+				
 				$interval(function(){
 					if($rootScope.liveStatus == "run"){
 						try{
-							admob.interstitial.show();
+							AdMob.showInterstitial();
 						}catch(err){ 
 							//alert(err.message);
 						}
 					}
 				},10000); 
+				
+				// rewardvideo
+				$timeout(function(){
+					try{
+						AdMob.prepareRewardVideoAd({
+							adId: admobid.rewardvideo,
+							autoShow: false,
+						});
+					}catch(err){ 
+						//alert(err.message);
+					}
+				}, 500);
 			}
 
 
