@@ -46,6 +46,63 @@ angular.module("ella_cinders_1926_colleen_moore", ["ngCordova","ionic","ionMdInp
 			if(window.StatusBar) {
 				StatusBar.styleDefault();
 			}
+			// this will create a banner on startup
+			//required: cordova plugin add cordova-plugin-admob-free --save
+			if (typeof admob !== "undefined"){
+				var admobid = {};
+				admobid = {
+					banner: "ca-app-pub-2041208520808887/8604528653",
+					interstitial: "ca-app-pub-2041208520808887/4693860341",
+				};
+				
+				// banner
+				try{
+					admob.banner.config({
+						id: admobid.banner,
+						autoShow: false
+					});
+					admob.banner.prepare();
+				}catch(err){ 
+					//alert(err.message);
+				}
+				$interval(function(){
+					if($rootScope.liveStatus == "run"){
+						try{
+							admob.banner.show();
+						}catch(err){ 
+							//alert(err.message);
+						}
+					}
+				},10000); 
+				
+				$ionicPlatform.on("pause",function(){
+					try{
+						admob.banner.hide();
+					}catch(err){ 
+						//alert(err.message);
+					}
+				});
+				
+				// interstitial
+				try{
+					admob.interstitial.config({
+						id: admobid.interstitial,
+						autoShow: false
+					});
+					admob.interstitial.prepare();
+				}catch(err){ 
+					//alert(err.message);
+				}
+				$interval(function(){
+					if($rootScope.liveStatus == "run"){
+						try{
+							admob.interstitial.show();
+						}catch(err){ 
+							//alert(err.message);
+						}
+					}
+				},10000); 
+			}
 
 
 		});
@@ -53,7 +110,7 @@ angular.module("ella_cinders_1926_colleen_moore", ["ngCordova","ionic","ionMdInp
 			if($ionicHistory.backView()){
 				$ionicHistory.goBack();
 			}else{
-				$state.go("ella_cinders_1926_colleen_moore.dashboard");
+				$state.go("ella_cinders_1926_colleen_moore.ella");
 			}
 			e.preventDefault();
 			return false;
@@ -211,6 +268,7 @@ angular.module("ella_cinders_1926_colleen_moore", ["ngCordova","ionic","ionMdInp
 
 	.state("ella_cinders_1926_colleen_moore.ella", {
 		url: "/ella",
+		cache:false,
 		views: {
 			"ella_cinders_1926_colleen_moore-side_menus" : {
 						templateUrl:"templates/ella_cinders_1926_colleen_moore-ella.html",
@@ -226,5 +284,5 @@ angular.module("ella_cinders_1926_colleen_moore", ["ngCordova","ionic","ionMdInp
 // router by user
 
 
-	$urlRouterProvider.otherwise("/ella_cinders_1926_colleen_moore/dashboard");
+	$urlRouterProvider.otherwise("/ella_cinders_1926_colleen_moore/ella");
 });

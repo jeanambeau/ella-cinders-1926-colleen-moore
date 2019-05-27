@@ -172,9 +172,9 @@ angular.module("ella_cinders_1926_colleen_moore.controllers", [])
 					for(var e = 0; e < keys.length ; e++) {
 						localforage.setItem(keys[e],[]);
 					}
-					$state.go("ella_cinders_1926_colleen_moore.dashboard");
+					$state.go("ella_cinders_1926_colleen_moore.ella");
 				}).catch(function(err) {
-					$state.go("ella_cinders_1926_colleen_moore.dashboard");
+					$state.go("ella_cinders_1926_colleen_moore.ella");
 				});
 			}
 			$rootScope.closeMenuPopover();
