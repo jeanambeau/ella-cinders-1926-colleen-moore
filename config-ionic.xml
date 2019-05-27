@@ -91,6 +91,7 @@
 	<!-- ./default -->
 	<plugin name="cordova-plugin-admobpro" />
 	<plugin name="cordova-plugin-dialogs" />
+	<plugin name="cordova-disable-http-cache" />
 	<plugin name="cordova-plugin-inappbrowser" />
 	<platform name="android">
 		<!-- splash and icon for build using ionic/cordova -->

@@ -91,6 +91,7 @@
 	<!-- ./default -->
 	<plugin name="cordova-plugin-admobpro" />
 	<plugin name="cordova-plugin-dialogs" />
+	<plugin name="cordova-disable-http-cache" />
 	<plugin name="cordova-plugin-inappbrowser" />
 	<platform name="android">
 		<icon qualifier="ldpi" src="www/res/icon/android/ldpi-icon.png" />
