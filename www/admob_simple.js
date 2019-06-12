@@ -3,7 +3,7 @@ var admobid = {};
 // TODO: replace the following ad units with your own
 if( /(android)/i.test(navigator.userAgent) ) {
   admobid = { // for Android
-    banner: '',
+    banner: 'ca-app-pub-2041208520808887/8604528653',
     interstitial: 'ca-app-pub-2041208520808887/4693860341',
     rewardvideo: '',
   };
@@ -28,7 +28,7 @@ function initApp() {
   AdMob.createBanner( {
     adId: admobid.banner,
     position: AdMob.AD_POSITION.BOTTOM_CENTER,
-    isTesting: true, // TODO: remove this line when release
+    
     overlap: false,
     offsetTopBar: false,
     bgColor: 'black'
@@ -37,7 +37,7 @@ function initApp() {
   // this will load a full screen ad on startup
   AdMob.prepareInterstitial({
     adId: admobid.interstitial,
-    isTesting: true, // TODO: remove this line when release
+    
     autoShow: true
   });
 }
